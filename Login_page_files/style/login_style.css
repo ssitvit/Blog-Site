@@ -60,9 +60,20 @@ body{
     font-size: 2rem;
     font-weight: 50px;
 }
+.back_btn{
+    height: 25px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+
+}
 .btn:hover{
     background-color: #aec9d8;
     letter-spacing: 1px;
+}
+.back_btn:hover{
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
 }
 @media (max-width: 1129px){
     .login_image{
