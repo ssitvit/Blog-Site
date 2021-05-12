@@ -484,6 +484,9 @@ footer.footer .contactus div > img{
     height: 50%;
     margin: .3rem .4rem;
 }
+.contactus a:hover{
+    text-decoration: underline;
+}
 
 footer.footer .follow div i{
     color: var(--white);
