@@ -9,15 +9,18 @@
 </head>
 <body>
     <div class="container">
-        <form action="" class="login_holder">
+        <form action="/signup" method="POST" class="login_holder">
             <div class="title">
                 Sign-Up
+            </div>
+            <div style="text-align: center;">
+                <%= msg %>
             </div>
             <input type="text" class="input" placeholder="Username" name="Username">
             <input type="email" class="input" placeholder="UserEmail" name="Useremail">
             <input type="password" class="input" placeholder="Password" name="Password">
             <input type="password" class="input" placeholder="Confirm Password" name="ConPassword">
-            <input type="submit" value="Submit"class="btn" name="Submit_btn">
+            <input type="submit" value="Submit"class="btn" name="">
             <a href="/login" style="text-decoration: none;">Login here</i></a>
         </form>
         
