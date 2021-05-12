@@ -3,6 +3,35 @@ var router = express.Router();
 // schema external module link 
 var userModule = require("../modules/blog");
 
+// checking user already defined 
+function checkuser(req,res,next){
+  var username=req.body.Username;
+  var checkexituser=userModule.findOne({Username: username});
+  checkexituser.exec((err,data)=>{
+    if (err) throw err;
+    if (data){
+      return res.render('signup',{
+        msg: "User Already Exists",
+      })
+    }
+    next();
+  })
+}
+// checking useremail already defined 
+function checkemail(req,res,next){
+  var useremail=req.body.Useremail;
+  var checkexitemail=userModule.findOne({email: useremail});
+  checkexitemail.exec((err,data)=>{
+    if (err) throw err;
+    if (data){
+      return res.render('signup',{
+        msg: "Email Already Exists",
+      })
+    }
+    next();
+  })
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -15,7 +44,7 @@ router.get('/signup', function(req, res, next) {
 });
 
 // post method for storing data from signup page 
-router.post('/signup', function(req, res, next) {
+router.post('/signup',checkuser, checkemail, function(req, res, next) {
   var username=req.body.Username;
   var useremail=req.body.Useremail;
   var password=req.body.Password;
