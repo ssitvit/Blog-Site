@@ -77,7 +77,7 @@ router.get('/logout', function(req, res, next) {
   res.render('logout', { });
 });
 router.get('/submission',checkLoginuser, function(req, res, next) {
-  var usertoken=localStorage.getItem("loginuser")
+  var usertoken=localStorage.getItem("loginuser");
   res.render('submission', { title: 'Submission',userdetails:usertoken });
 });
 
