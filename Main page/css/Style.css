@@ -31,7 +31,7 @@ html, body{
 }
 
 
-/* ---------------- Global Classes ---------------*/
+/* ---------------- Global Classes ---------------*/  
 
 a{
     text-decoration: none;
@@ -164,11 +164,25 @@ p{
 }
 
 .nav .social{
-    padding: 44px 0
+    margin: 3% 0;
 }
 
+.nav .social input{
+    height: 20px;
+    width: 175px;
+    background-color: #242424;
+    color: white;
+    outline: none;
+    border-radius: 8px;
+}
+
+.nav .social button{
+    background-color: black;
+    border: none;
+    outline: none;
+}
 .nav .social i{
-    padding: 0 .2rem;
+    background-color: black;
 }
 
 .nav .social i:hover{
