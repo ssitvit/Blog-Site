@@ -28,6 +28,7 @@ const userSchema=new mongoose.Schema({
     },
     
     
+    
   });
 
   const blogmodel=mongoose.model("blog",userSchema);

@@ -2,11 +2,31 @@ var express = require('express');
 var router = express.Router();
 // schema external module link 
 var userModule = require("../modules/blog");
+// web token module
+var jwt = require("jsonwebtoken");
+
+// checking user is login or not in a function
+function checkLoginuser(req,res,next){
+  var usertoken=localStorage.getItem("usertoken")
+  try {
+    var decoded = jwt.verify(usertoken, 'logintoken');
+  } catch(err) {
+    res.redirect('/');
+  }
+  next();
+}
+
+// local storage 
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require("node-localstorage").LocalStorage;
+  localStorage = new LocalStorage("./scratch");
+}
 
 // checking user already defined 
 function checkuser(req,res,next){
   var username=req.body.Username;
   var checkexituser=userModule.findOne({Username: username});
+
   checkexituser.exec((err,data)=>{
     if (err) throw err;
     if (data){
@@ -36,11 +56,18 @@ function checkemail(req,res,next){
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+router.get('/exe',checkLoginuser, function(req, res, next) {
+  res.render('exe', { title: 'Express' });
+});
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Express' });
 });
 router.get('/signup', function(req, res, next) {
-  res.render('signup', { title: 'Express' });
+  res.render('signup', { title: 'Express',msg:'' });
+});
+router.get('/logout', function(req, res, next) {
+  
+  res.render('logout', { });
 });
 
 // post method for storing data from signup page 
@@ -76,4 +103,43 @@ router.post('/signup',checkuser, checkemail, function(req, res, next) {
   // res.render('signup', { title: 'Express' });
 });
 
+// login page post method 
+router.post('/login', function(req, res, next) {
+  var loginuser=req.body.Username;
+  var loginpass=req.body.Password;
+  // console.log(loginpass+loginuser);
+
+  var checkuser=userModule.findOne({username:loginuser});
+  checkuser.exec((err,data)=>{
+    if (err) throw err;
+    var getpassword=data.password;
+    var getid=data._id;
+    // console.log(getpassword+getid);
+
+    if(loginpass==getpassword){
+      var token = jwt.sign({ userID: getid }, "logintoken");
+      // storing token in local storage
+      localStorage.setItem("usertoken", token);
+      localStorage.setItem("loginuser", loginuser);
+      
+      res.redirect("/exe");
+    }else {
+      res.render("login", {
+        title: "Login Page",
+        msg: "Invalid username and password",
+      });
+    }
+
+  })
+
+  // res.render('login', { title: 'Express' });
+});
+
+// logout method 
+router.post('/logout', function(req, res, next) {
+  localStorage.removeItem('usertoken')
+  localStorage.removeItem('loginuser')
+  res.redirect('/')
+  
+});
 module.exports = router;
