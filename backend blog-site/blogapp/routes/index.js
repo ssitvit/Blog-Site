@@ -25,7 +25,7 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 // checking user already defined 
 function checkuser(req,res,next){
   var username=req.body.Username;
-  var checkexituser=userModule.findOne({Username: username});
+  var checkexituser=userModule.findone({username: username});
 
   checkexituser.exec((err,data)=>{
     if (err) throw err;
@@ -107,9 +107,11 @@ router.post('/signup',checkuser, checkemail, function(req, res, next) {
 router.post('/login', function(req, res, next) {
   var loginuser=req.body.Username;
   var loginpass=req.body.Password;
+
   // console.log(loginpass+loginuser);
 
-  var checkuser=userModule.findOne({username:loginuser});
+  var checkuser= userModule.findOne({ username: loginuser});
+  // console.log(checkuser.username);
   checkuser.exec((err,data)=>{
     if (err) throw err;
     var getpassword=data.password;
