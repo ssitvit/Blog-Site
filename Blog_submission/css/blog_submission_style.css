@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
-body{
+body {
     height: 100vh;
     width: 100vw;
     background-color: rgb(87, 87, 87);
@@ -16,7 +16,7 @@ body{
     justify-content: center;
     display: flex;
 }
-.holder{
+.holder {
     background-color: rgba(255, 255, 255, 0.815);
     height: 80vh;
     width: 80vw;
@@ -25,7 +25,7 @@ body{
     align-items: center;
     justify-content: center;
 }
-.blog{
+.blog {
     height: 90%;
     width: 70%;
     border: 8px solid #5bc9cfc9;
@@ -37,28 +37,26 @@ body{
     align-items: center;
     justify-content: space-around;
 }
-.title{
+.title {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 1.6rem !important;
 }
-.input_1{
+.input_1 {
     width: 35%;
     padding: 2px;
-
 }
-.input_2{
+.input_2 {
     width: 80%;
     height: 10%;
     padding: 2px;
-
 }
-#Content{
+#Content {
     width: 80%;
     height: 30%;
     padding: 2px;
 }
-.btn{
+.btn {
     padding: 5px;
     width: 100px;
     color: white;
@@ -67,66 +65,62 @@ body{
     border-radius: 4px;
     transition: 0.3s;
 }
-.back_btn{
+.back_btn {
     height: 25px;
     position: absolute;
     left: 10px;
     top: 10px;
     cursor: pointer;
-
 }
-.Blog_images{
+.Blog_images {
     width: 200px;
 }
-.btn:hover{
+.btn:hover {
     background-color: #3d72b8;
     letter-spacing: 1px;
 }
-.back_btn:hover{
+.back_btn:hover {
     filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
 }
-@media (max-width: 1023px){
-    .input_1{
+@media (max-width: 1023px) {
+    .input_1 {
         width: 50%;
     }
-    .input_2{
+    .input_2 {
         width: 90%;
     }
-    #Content{
+    #Content {
         width: 90%;
     }
-    .blog{
+    .blog {
         width: 84%;
     }
-    
 }
-@media (max-width: 460px){
-    .holder{
-        width: 90vw;
+@media (max-width: 460px) {
+    .holder {
+        width: 95vw;
+        height: 90vh;
     }
-    .input_1{
+    .input_1 {
         width: 70%;
         font-size: 0.7rem;
     }
-    .input_2{
+    .input_2 {
         width: 90%;
         font-size: 0.7rem;
-
     }
-    #Content{
+    #Content {
         width: 90%;
         font-size: 0.7rem;
-
     }
-    .blog{
+    .blog {
         width: 84%;
     }
-    .image_cont{
+    .image_cont {
         font-size: 0.7rem;
     }
-    .Blog_images{
+    .Blog_images {
         font-size: 0.7rem;
         width: 170px;
     }
-    
 }
