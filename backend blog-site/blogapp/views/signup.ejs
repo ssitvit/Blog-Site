@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <link rel="stylesheet" href="stylesheets/login_style.css">
+</head>
+<body>
+    <div class="container">
+        <form action="/signup" method="POST" class="login_holder">
+            <div class="title">
+                Sign-Up
+            </div>
+            <div style="text-align: center;">
+                <%= msg %>
+            </div>
+            <input type="text" class="input" placeholder="Username" name="Username">
+            <input type="email" class="input" placeholder="UserEmail" name="Useremail">
+            <input type="password" class="input" placeholder="Password" name="Password">
+            <input type="password" class="input" placeholder="Confirm Password" name="ConPassword">
+            <input type="submit" value="Submit"class="btn" name="">
+            <a href="/login" style="text-decoration: none;">Login here</i></a>
+        </form>
+        
+        <img src="images/login_page_images/img2.png" alt="" class="login_image">
+    </div>
+    <!-- <a href="">
+        <img src="images/login_page_images/back.svg" alt="" class="back_btn">
+    </a> -->
+</body>
+</html>
