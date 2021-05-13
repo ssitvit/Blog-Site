@@ -19,10 +19,14 @@
             <div class="user">
                 <img src="/images/submission_page_images/user.png" alt="" class="user_img">
                 <p>
-                    Jayendra Awasthi
+                    <%=userdetails%>
                 </p>
             </div>
-            <div class="logout_btn">Logout</div>
+            <!-- <form action="/logout" class="logout_btn" method="POST"> <button type="submit">Logout</button></form> -->
+            <div class="logout_btn">
+                <form action="/logout" method="POST"><Button style="background-color: #5bc9cfc9;" type="submit">Logout</Button></form>
+            </div>
+        </form>
         </div>
 
     </div>

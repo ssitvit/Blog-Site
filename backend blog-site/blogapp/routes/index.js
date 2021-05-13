@@ -11,7 +11,11 @@ function checkLoginuser(req,res,next){
   try {
     var decoded = jwt.verify(usertoken, 'logintoken');
   } catch(err) {
-    res.redirect('/');
+    res.render("login", {
+      title: "Login Page",
+      msg: "Login first",
+
+    });
   }
   next();
 }
@@ -53,12 +57,15 @@ function checkemail(req,res,next){
 }
 
 /* GET home page. */
+// router.get('/', function(req, res, next) {
+//   res.render('index', { title: 'Express' });
+// });
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('blog', { title: 'Express' });
 });
-router.get('/exe',checkLoginuser, function(req, res, next) {
-  res.render('exe', { title: 'Express' });
-});
+// router.get('/exe',checkLoginuser, function(req, res, next) {
+//   res.render('exe', { title: 'Express' });
+// });
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Express' });
 });
@@ -68,6 +75,10 @@ router.get('/signup', function(req, res, next) {
 router.get('/logout', function(req, res, next) {
   
   res.render('logout', { });
+});
+router.get('/submission',checkLoginuser, function(req, res, next) {
+  var usertoken=localStorage.getItem("loginuser")
+  res.render('submission', { title: 'Submission',userdetails:usertoken });
 });
 
 // post method for storing data from signup page 
@@ -124,7 +135,7 @@ router.post('/login', function(req, res, next) {
       localStorage.setItem("usertoken", token);
       localStorage.setItem("loginuser", loginuser);
       
-      res.redirect("/exe");
+      res.redirect("/submission");
     }else {
       res.render("login", {
         title: "Login Page",
@@ -141,7 +152,11 @@ router.post('/login', function(req, res, next) {
 router.post('/logout', function(req, res, next) {
   localStorage.removeItem('usertoken')
   localStorage.removeItem('loginuser')
-  res.redirect('/')
+  res.render("login", {
+    title: "Login Page",
+    msg: "Login To submit blog",
+
+  });
   
 });
 module.exports = router;
