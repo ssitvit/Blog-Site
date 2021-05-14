@@ -10,7 +10,7 @@ var submissionRouter = require('./routes/submission')
 
 var app = express();
 
-app.listen(3010);
+// app.listen(3010);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

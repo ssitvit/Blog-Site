@@ -32,20 +32,20 @@
     </div>
     <div class="container">
         <div class="holder">
-            <form action="/submission" method="POST" class="blog">
+            <form action="/submission" method="POST" class="blog" enctype="multipart/form-data">
                 <div class="title">
                     Blog Submission
                 </div>
                 <div>
                     <%= msg %> 
                 </div>
-                <input type="text" class="input_1" placeholder="Author" name="Blog_Author">
+                <input type="text" class="input_1" placeholder="<%=userdetails%>" enctype="multipart/form-data" name="" disabled="disabled">
                 <input type="text" class="input_1" placeholder="Blog title" name="Blog_title">
                 <textarea class="input_2" name="Blog_desc" placeholder="Description"></textarea>
                 <textarea id="Content" name="Blog_content" placeholder="Content"></textarea>
                 <div class="image_cont">
                     <label for="Blog_images">Images: </label>
-                    <input type="file" accept="image/*" class="Blog_images" name="Blog_images">
+                    <input type="file" class="Blog_images" name="file">
                 </div>
                 <input type="submit" value="Submit" class="btn" name="Submit_btn">
             </form>
