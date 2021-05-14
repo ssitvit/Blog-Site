@@ -2,8 +2,13 @@ var express = require('express');
 var router = express.Router();
 // schema external module link 
 var userModule = require("../modules/blog");
+var blogModule = require("../modules/blog_sub");
+
 // web token module
 var jwt = require("jsonwebtoken");
+
+// for dynamic showing of data 
+const moment = require('moment');
 
 // checking user is login or not in a function
 function checkLoginuser(req,res,next){
@@ -56,12 +61,22 @@ function checkemail(req,res,next){
   })
 }
 
+// function for finding data from our data base 
+var blogshow=blogModule.find({});
+
 /* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
+
 router.get('/', function(req, res, next) {
-  res.render('blog', { title: 'Express' });
+  blogshow.exec(function(err,data){
+    if (err) throw err;
+
+    res.render('blog', {
+      title: "Employee records",
+      records: data,
+      
+    });
+  })
+  // res.render('blog', { title: 'Express' });
 });
 // router.get('/exe',checkLoginuser, function(req, res, next) {
 //   res.render('exe', { title: 'Express' });

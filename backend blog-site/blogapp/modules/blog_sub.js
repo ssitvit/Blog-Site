@@ -29,11 +29,12 @@ const blogSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        required: true
+        required: true,
+        default:"",
     },
     date: {
-        type: Date,
-        default:Date.now,
+        type: String,
+        default:"",
         
     },
 }, {timestamps: true})
