@@ -29,7 +29,7 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 // checking user already defined 
 function checkuser(req,res,next){
   var username=req.body.Username;
-  var checkexituser=userModule.findone({username: username});
+  var checkexituser=userModule.findOne({username: username});
 
   checkexituser.exec((err,data)=>{
     if (err) throw err;
@@ -67,7 +67,7 @@ router.get('/', function(req, res, next) {
 //   res.render('exe', { title: 'Express' });
 // });
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Express' });
+  res.render('login', { title: 'Express', msg:"" });
 });
 router.get('/signup', function(req, res, next) {
   res.render('signup', { title: 'Express',msg:'' });
@@ -78,7 +78,7 @@ router.get('/logout', function(req, res, next) {
 });
 router.get('/submission',checkLoginuser, function(req, res, next) {
   var usertoken=localStorage.getItem("loginuser");
-  res.render('submission', { title: 'Submission',userdetails:usertoken });
+  res.render('submission', { title: 'Submission',userdetails:usertoken, msg:"" });
 });
 
 // post method for storing data from signup page 
