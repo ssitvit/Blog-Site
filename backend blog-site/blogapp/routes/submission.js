@@ -39,15 +39,27 @@ var Storage=multer.diskStorage({
 // middle ware for multer 
 var upload=multer({storage:Storage}).single('file');
 
+// function for finding data from our data base 
+var blogshow=blogModule.find({});
+
+
 
 router.post('/submission',upload,(req,res)=>{
-  var usertoken=localStorage.getItem("usertoken")
+  // getting date in mm/dd//yy
+  var today=new Date();
+  var a= today.getDate();
+  var b= today.getFullYear();
+  var c= today.getDay();
+  var today_date=a+"/"+b+"/"+c;
+
+  var usertoken=localStorage.getItem("loginuser");
   var author =usertoken ;
   var title = req.body.Blog_title;
   var desc = req.body.Blog_desc;
   var content = req.body.Blog_content;
   var usertoken=localStorage.getItem("loginuser");
   var image = req.file.filename;
+  var date=today_date;
 
   var Blog = new blogModule({
     author: author,
@@ -55,6 +67,7 @@ router.post('/submission',upload,(req,res)=>{
     desc: desc,
     body: content,
     image:image,
+    date:date,
   });
   Blog.save((err, doc)=>{
     if (err) throw err;

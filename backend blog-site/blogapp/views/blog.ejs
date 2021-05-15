@@ -9,9 +9,8 @@
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/stylesheets/blog_css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-
-
     <!-- --------- Owl-Carousel ------------------->
     <link rel="stylesheet" href="/stylesheets/blog_css/owl.carousel.min.css">
     <link rel="stylesheet" href="/stylesheets/blog_css/owl.theme.default.min.css">
@@ -55,7 +54,7 @@
             <div class="social text-gray">
                 <form action="">
                     <input type="text" name="search " placeholder="Search a blog">
-                    <button type="submit"><i class="fas fa-search fa-lg"></i></button>
+                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></i></button>
                 </form>
                     
                
@@ -75,100 +74,38 @@
 
         
         <!------------------------- Site Content -------------------------->
-
+        
         <section class="container">
             <h1>What's new?</h1>
             <div class="site-content">
+                
                 <div class="posts">
+                    <%if(records.length>0){ %>
+                        <%records.forEach(function(row){%>
                     <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
                         <div class="post-image">
                             <div>
-                                <img src="/images/blog_assets/Blog-post/blog1.png" class="img" alt="blog1">
+                                <img src="/upload/<%= row.image %>" class="img" alt="blog1">
                             </div>
                             <div class="post-info flex-row">
-                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;Admin</span>
-                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 14, 2019</span>
+                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;<%= row.author %></span>
+                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;<%= row.date %></span>
                                 <!-- <span>2 Commets</span> -->
                             </div>
                         </div>
                         <div class="post-title">
-                            <a href="#">Why should boys have all the fun? it's the women who are making india an
-                                alcohol-loving contry</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas deserunt beatae
-                                adipisci iusto totam placeat corrupti ipsum, tempora magnam incidunt aperiam tenetur a
-                                nobis, voluptate, numquam architecto fugit. Eligendi quidem ipsam ducimus minus magni
-                                illum similique veniam tempore unde?
+                            <a href="#"><%= row.title %></a>
+                            <p><%= row.desc %>
                             </p>
-                            <button class="btn post-btn">Read More &nbsp; <i class="fas fa-arrow-right"></i></button>
+                            <button class="btn post-btn">Read More &nbsp; <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <hr>
-                    <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="post-image">
-                            <div>
-                                <img src="/images/blog_assets/Blog-post/blog2.png" class="img" alt="blog1">
-                            </div>
-                            <div class="post-info flex-row">
-                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;Admin</span>
-                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 16, 2019</span>
-                                <!-- <span>7 Commets</span> -->
-                            </div>
-                        </div>
-                        <div class="post-title">
-                            <a href="#">Why should boys have all the fun? it's the women who are making india an
-                                alcohol-loving contry</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas deserunt beatae
-                                adipisci iusto totam placeat corrupti ipsum, tempora magnam incidunt aperiam tenetur a
-                                nobis, voluptate, numquam architecto fugit. Eligendi quidem ipsam ducimus minus magni
-                                illum similique veniam tempore unde?
-                            </p>
-                            <button class="btn post-btn">Read More &nbsp; <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="post-image">
-                            <div>
-                                <img src="/images/blog_assets/Blog-post/blog3.png" class="img" alt="blog1">
-                            </div>
-                            <div class="post-info flex-row">
-                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;Admin</span>
-                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 19, 2019</span>
-                                <!-- <span>5 Commets</span> -->
-                            </div>
-                        </div>
-                        <div class="post-title">
-                            <a href="#">New data recording system to better analyse road accidents</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas deserunt beatae
-                                adipisci iusto totam placeat corrupti ipsum, tempora magnam incidunt aperiam tenetur a
-                                nobis, voluptate, numquam architecto fugit. Eligendi quidem ipsam ducimus minus magni
-                                illum similique veniam tempore unde?
-                            </p>
-                            <button class="btn post-btn">Read More &nbsp; <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="post-image">
-                            <div>
-                                <img src="/images/blog_assets/Blog-post/blog4.png" class="img" alt="blog1">
-                            </div>
-                            <div class="post-info flex-row">
-                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;Admin</span>
-                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 21, 2019</span>
-                                <!-- <span>12 Commets</span> -->
-                            </div>
-                        </div>
-                        <div class="post-title">
-                            <a href="#">New data recording system to better analyse road accidents</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptas deserunt beatae
-                                adipisci iusto totam placeat corrupti ipsum, tempora magnam incidunt aperiam tenetur a
-                                nobis, voluptate, numquam architecto fugit. Eligendi quidem ipsam ducimus minus magni
-                                illum similique veniam tempore unde?
-                            </p>
-                            <button class="btn post-btn">Read More &nbsp; <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
+                    <% })} else{ %>
+      
+                        <td>No blog added</td>
+                        <% } %>
+                    
                 </div>
                 <aside class="sidebar">
                     <div class="category">
@@ -282,14 +219,16 @@
                         </div>
                     </div> -->
                     <div class="popular-tags">
-                        <h2>Popular Tags</h2>
+                        <h2>Website developers</h2>
                         <div class="tags flex-row">
-                            <span class="tag" data-aos="flip-up" data-aos-delay="100">Software</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="200">Technology</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="300">Artificial intelligence</span>
+                            <span class="tag" data-aos="flip-up" data-aos-delay="100">Shreyansh</span>
+                            <span class="tag" data-aos="flip-up" data-aos-delay="200">Ganesh</span>
+                            <span class="tag" data-aos="flip-up" data-aos-delay="300">Gunzan</span>
                             <span class="tag" data-aos="flip-up" data-aos-delay="400">Illustration</span>
                             <span class="tag" data-aos="flip-up" data-aos-delay="500">Machine Learning</span>
                             <span class="tag" data-aos="flip-up" data-aos-delay="600">Cloud Computing</span>
+                            <span class="tag" data-aos="flip-up" data-aos-delay="700">Cyber Security</span>
+                            <span class="tag" data-aos="flip-up" data-aos-delay="700">Cyber Security</span>
                             <span class="tag" data-aos="flip-up" data-aos-delay="700">Cyber Security</span>
                         </div>
                     </div>
@@ -318,7 +257,7 @@
                 <h2>Newsletter</h2>
                 <p>Stay update with our latest</p>
                 <div class="form-element">
-                    <input type="text" placeholder="Email"><span><i class="fas fa-chevron-right"></i></span>
+                    <input type="text" placeholder="Email"><span><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
                 </div>
             </div>
             <div class="contactus" data-aos="fade-left" data-aos-delay="200" id="contactus">
@@ -330,10 +269,10 @@
                 <h2>Follow us</h2>
                 <p>Let us be Social</p>
                 <div>
-                <a href="https://www.facebook.com/SSITVIT/"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://instagram.com/ieeessit/"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/ieeessitvit"><i class="fab fa-github"></i></a>
+                <a href="https://www.facebook.com/SSITVIT/"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                <a href="https://instagram.com/ieeessit/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                <a href="https://github.com/ieeessitvit"><i class="fa fa-github" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
@@ -344,7 +283,7 @@
             </h4>
         </div>
         <div class="move-up">
-            <span><i class="fas fa-arrow-circle-up fa-2x"></i></span>
+            <span><i class="fa fa-arrow-circle-up  fa-3x"  aria-hidden="true"></i></span>
         </div>
     </footer>
 
