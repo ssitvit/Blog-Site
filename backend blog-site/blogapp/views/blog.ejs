@@ -41,7 +41,7 @@
             <div>
                 <ul class="nav-items">
                     <li class="nav-link">
-                        <a href="#">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li class="nav-link">
                         <a href="/submission">Login</a>
@@ -52,9 +52,9 @@
                 </ul>
             </div>
             <div class="social text-gray">
-                <form action="/search">
-                    <input type="text" name="search " placeholder="Search a blog">
-                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></i></button>
+                <form action="/search" method="POST">
+                    <input type="text" name="search" placeholder="Search a blog">
+                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
                     
                
@@ -97,7 +97,7 @@
                             <a href="#"><%= row.title %></a>
                             <p><%= row.desc %>
                             </p>
-                            <form action="/readmore/<%= row._id %>" method="POST">
+                            <form action="/readmore/<%= row._id %>" >
                             <button class="btn post-btn">Read More &nbsp; <i class="fa fa-caret-down"  style="color: black;" aria-hidden="true"></i></button>
                         </form>
                         </div>

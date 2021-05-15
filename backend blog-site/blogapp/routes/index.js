@@ -78,11 +78,12 @@ function checkuserexist(req, res, next) {
 
 
 // function for finding data from our data base
-var blogshow = blogModule.find({});
+var blogshow = blogModule.find().sort({createdAt: -1});
 
 /* GET home page. */
 
 router.get("/", function (req, res, next) {
+
   blogshow.exec(function (err, data) {
     if (err) throw err;
 
@@ -100,9 +101,9 @@ router.get("/login", function (req, res, next) {
 router.get("/signup", function (req, res, next) {
   res.render("signup", { title: "Express", msg: "" });
 });
-router.get("/search", function (req, res, next) {
-  res.render("search", { title: "Express", msg: "" });
-});
+// router.get("/search", function (req, res, next) {
+//   res.render("search", { title: "Express", msg: "" });
+// });
 router.get("/logout", function (req, res, next) {
   res.render("logout", {});
 });
@@ -188,7 +189,7 @@ router.post("/login",checkuserexist, function (req, res, next) {
 });
 
 // readmore function redirect 
-router.post("/readmore/:id", function (req, res, next) {
+router.get("/readmore/:id", function (req, res, next) {
   console.log(req.params.id);
   console.log(req.params);
   var blogsingle = blogModule.find({_id:req.params.id});
@@ -201,6 +202,23 @@ router.post("/readmore/:id", function (req, res, next) {
     });
   });
   // res.render("logout", {});
+});
+
+// search functionality 
+router.post("/search",async function (req, res, next) {
+  var search=req.body.search;
+  
+  // var blogsearch = blogModule.find( { author:search } );
+  // blogModule.createIndex( { title: "text" } );
+
+  var blogsearch = blogModule.find( { $text: {$search:search, $caseSensitive: false}  } );
+  blogsearch.exec(function(err,data){
+
+    // console.log("data coming from backend "+data);
+    if (err) throw err;
+    res.render("search", { title: "Express", records:data  });
+  });
+  
 });
 
 // mailer 
