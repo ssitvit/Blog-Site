@@ -88,8 +88,8 @@
                                 <img src="/upload/<%= row.image %>" class="img" alt="blog1">
                             </div>
                             <div class="post-info flex-row">
-                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;<%= row.author %></span>
-                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;<%= row.date %></span>
+                                <span><i class="fa fa-pencil" style="color: black;" aria-hidden="true"></i></i></i>&nbsp;&nbsp;<%= row.author %></span>
+                                <span><i class="fa fa-calendar" style="color: black;" aria-hidden="true"></i>&nbsp;&nbsp;<%= row.date %></span>
                                 <!-- <span>2 Commets</span> -->
                             </div>
                         </div>
@@ -97,7 +97,9 @@
                             <a href="#"><%= row.title %></a>
                             <p><%= row.desc %>
                             </p>
-                            <button class="btn post-btn">Read More &nbsp; <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                            <form action="/readmore/<%= row._id %>" method="POST">
+                            <button class="btn post-btn">Read More &nbsp; <i class="fa fa-caret-down"  style="color: black;" aria-hidden="true"></i></button>
+                        </form>
                         </div>
                     </div>
                     <hr>
@@ -257,7 +259,7 @@
                 <h2>Newsletter</h2>
                 <p>Stay update with our latest</p>
                 <div class="form-element">
-                    <input type="text" placeholder="Email"><span><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                    <input type="text" placeholder="Email"><span><i class="fa fa-envelope-o" aria-hidden="true"  style="color: black;"></i></span>
                 </div>
             </div>
             <div class="contactus" data-aos="fade-left" data-aos-delay="200" id="contactus">

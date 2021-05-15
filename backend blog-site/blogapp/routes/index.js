@@ -92,9 +92,7 @@ router.get("/", function (req, res, next) {
   });
   // res.render('blog', { title: 'Express' });
 });
-// router.get('/exe',checkLoginuser, function(req, res, next) {
-//   res.render('exe', { title: 'Express' });
-// });
+
 router.get("/login", function (req, res, next) {
   res.render("login", { title: "Express", msg: "" });
 });
@@ -104,6 +102,7 @@ router.get("/signup", function (req, res, next) {
 router.get("/logout", function (req, res, next) {
   res.render("logout", {});
 });
+
 router.get("/submission", checkLoginuser, function (req, res, next) {
   var usertoken = localStorage.getItem("loginuser");
   res.render("submission", {
@@ -182,6 +181,22 @@ router.post("/login",checkuserexist, function (req, res, next) {
   });
 
   // res.render('login', { title: 'Express' });
+});
+
+// readmore function redirect 
+router.post("/readmore/:id", function (req, res, next) {
+  console.log(req.params.id);
+  console.log(req.params);
+  var blogsingle = blogModule.find({_id:req.params.id});
+  blogsingle.exec(function (err, data) {
+    if (err) throw err;
+
+    res.render("singleblog", {
+      title: "Employee records",
+      records: data,
+    });
+  });
+  // res.render("logout", {});
 });
 
 // logout method
