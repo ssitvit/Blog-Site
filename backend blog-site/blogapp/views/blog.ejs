@@ -52,7 +52,7 @@
                 </ul>
             </div>
             <div class="social text-gray">
-                <form action="">
+                <form action="/search">
                     <input type="text" name="search " placeholder="Search a blog">
                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></i></button>
                 </form>
@@ -259,7 +259,12 @@
                 <h2>Newsletter</h2>
                 <p>Stay update with our latest</p>
                 <div class="form-element">
-                    <input type="text" placeholder="Email"><span><i class="fa fa-envelope-o" aria-hidden="true"  style="color: black;"></i></span>
+                    <form action="/mailer" method="POST">
+                    <input type="email" name="mail" placeholder="Email">
+                  <span> <button type="submit"><i class="fa fa-envelope-o" aria-hidden="true"  style="color: black;"></i>
+                    </button>
+                </span>
+                </form>
                 </div>
             </div>
             <div class="contactus" data-aos="fade-left" data-aos-delay="200" id="contactus">

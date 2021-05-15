@@ -486,7 +486,7 @@ footer.footer .newsletter .form-element input{
     width: 74%;
 }
 
-footer.footer .newsletter .form-element span{
+footer.footer .newsletter .form-element span button{
     background: var(--sky);
     padding: .5rem .7rem;
     cursor: pointer;
