@@ -50,7 +50,7 @@ router.post('/submission',upload,(req,res)=>{
   var a= today.getDate();
   var b= today.getFullYear();
   var c= today.getDay();
-  var today_date=a+"/"+c+"/"+c;
+  var today_date=a+"/"+c+"/"+b;
 
   var usertoken=localStorage.getItem("loginuser");
   var author =usertoken ;

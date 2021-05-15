@@ -3,7 +3,8 @@ var router = express.Router();
 // schema external module link
 var userModule = require("../modules/blog");
 var blogModule = require("../modules/blog_sub");
-
+// mailer for subscription 
+var nodemailer = require('nodemailer');
 // web token module
 var jwt = require("jsonwebtoken");
 
@@ -98,6 +99,9 @@ router.get("/login", function (req, res, next) {
 });
 router.get("/signup", function (req, res, next) {
   res.render("signup", { title: "Express", msg: "" });
+});
+router.get("/search", function (req, res, next) {
+  res.render("search", { title: "Express", msg: "" });
 });
 router.get("/logout", function (req, res, next) {
   res.render("logout", {});
@@ -197,6 +201,39 @@ router.post("/readmore/:id", function (req, res, next) {
     });
   });
   // res.render("logout", {});
+});
+
+// mailer 
+router.post("/mailer", function (req, res, next) {
+  var mail=req.body.mail;
+  console.log(mail);
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'ganiiscool@gmail.com',
+      pass: 'xdjcrasbbxsdwyua'
+    },
+    tls:{
+      rejectUnauthorized:false
+    }
+  });
+  
+  var mailOptions = {
+    from: 'ganiiscool@gmail.com',
+    to: 'mail',
+    subject: 'You have just subscribed to IEEE SSIT VIT Blogs',
+    text: 'That was easy!'
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+      res.redirect("/");
+    } else {
+      console.log('Email sent: ' + info.response);
+      res.redirect("/");
+    }
+  });
 });
 
 // logout method
