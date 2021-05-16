@@ -73,16 +73,17 @@
 
                     <div class="time">
                         <img src="/images/single_assets/calander.svg" alt="time" />
-                        <span><%= row.date %></span>
+                        <span><%= row.createdAt.toLocaleDateString() %></span>
                     </div>
                 </div>
             </div>
 
             <img class="poster" src="/upload/<%= row.image %>" alt="blog" />
 
-            <p class="content">
-                <%= row.body%>
-            </p>
+            
+            <div>
+                <%- row.sanitizedHtml%>
+            </div>
             <% })} else{ %>
       
                 <td>No blog added</td>

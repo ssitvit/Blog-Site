@@ -45,12 +45,7 @@ var blogshow=blogModule.find({});
 
 
 router.post('/submission',upload,(req,res)=>{
-  // getting date in mm/dd//yy
-  var today=new Date();
-  var a= today.getDate();
-  var b= today.getFullYear();
-  var c= today.getDay();
-  var today_date=a+"/"+c+"/"+b;
+ 
 
   var usertoken=localStorage.getItem("loginuser");
   var author =usertoken ;
@@ -59,7 +54,7 @@ router.post('/submission',upload,(req,res)=>{
   var content = req.body.Blog_content;
   var usertoken=localStorage.getItem("loginuser");
   var image = req.file.filename;
-  var date=today_date;
+ 
 
   var Blog = new blogModule({
     author: author,
@@ -67,7 +62,7 @@ router.post('/submission',upload,(req,res)=>{
     desc: desc,
     body: content,
     image:image,
-    date:date,
+    
   });
   Blog.save((err, doc)=>{
     if (err) throw err;
