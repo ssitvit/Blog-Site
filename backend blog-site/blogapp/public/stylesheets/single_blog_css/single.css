@@ -1,5 +1,5 @@
 /* ---------------- Global Classes ---------------*/
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 body {
     margin: 0;
     padding: 0;
@@ -10,6 +10,7 @@ body {
 a {
     text-decoration: none;
     color: #ddd;
+    line-height: 1.5;
 }
 
 .flex-row {
@@ -19,7 +20,7 @@ a {
 }
 
 ul {
-    list-style-type: none;
+    line-height: 1.5;
 }
 
 h1 {
@@ -28,8 +29,8 @@ h1 {
 }
 
 h2 {
-    font-family: 'Amaranth', sans-serif;
-    
+    font-family: "Amaranth", sans-serif;
+
     font-size: 2rem;
     color: #323b46;
     text-align: center;
@@ -59,8 +60,9 @@ button.btn {
 }
 
 p {
-    font-family: "Lexed", sans-serif;
+    font-family: "Lexend", sans-serif;
     color: #343434;
+    line-height: 1.5;
 }
 
 /* --------------- navbar ----------------- */
@@ -137,17 +139,26 @@ p {
 
 /* -------x------- navbar ---------x------- */
 
-.poster {
-    width: 50%;
-    float: left;
-    margin-right: 1em;
-    margin-bottom: 1em;
-    margin-left: 0.7em;
+.blog {
+    width: 100%;
+}
+
+.blog > p {
+    font-family: "Lexend", sans-serif;
+}
+
+.blog > img {
+    display: block;
+    width: 80%;
+    margin: 2em auto;
+    box-shadow: 1px 1px 64px 0px rgba(25, 52, 63, 0.61);
+    -webkit-box-shadow: 1px 1px 64px 0px rgba(25, 52, 63, 0.61);
+    -moz-box-shadow: 1px 1px 64px 0px rgba(25, 52, 63, 0.61);
 }
 
 .content {
-    padding: 0rem 0.8rem;
-    text-align: justify;
+    width: 80%;
+    margin: 1em auto;
 }
 
 .info {
@@ -168,7 +179,11 @@ p {
 }
 
 @media only screen and (max-width: 768px) {
-    .poster {
-        width: 100%;
+    .blog > img {
+        width: 96%;
+    }
+
+    .content {
+        width: 96%;
     }
 }

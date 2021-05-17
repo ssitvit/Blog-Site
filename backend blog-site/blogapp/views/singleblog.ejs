@@ -61,8 +61,7 @@
         </nav>
 
         <div class="blog">
-            <%if(records.length>0){ %>
-                <%records.forEach(function(row){%>
+            <%if(records.length>0){ %> <%records.forEach(function(row){%>
             <div class="blog-head">
                 <h2><%= row.title %></h2>
                 <div class="info">
@@ -80,19 +79,12 @@
 
             <img class="poster" src="/upload/<%= row.image %>" alt="blog" />
 
-            
-            <div>
-                <%- row.sanitizedHtml %>
-                <%console.log(row.sanitizedHtml)%>
+            <div class="content"><%- row.sanitizedHtml %> <%console.log(row.sanitizedHtml)%></div>
 
-            </div>
             <% })} else{ %>
-      
-                <td>No blog added</td>
-                <% } %>
+
+            <td>No blog added</td>
+            <% } %>
         </div>
-
-
-        
     </body>
 </html>

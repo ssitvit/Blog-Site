@@ -1,5 +1,5 @@
 /* ---------------- Global Classes ---------------*/
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 body {
     margin: 0;
     padding: 0;
@@ -28,8 +28,8 @@ h1 {
 }
 
 h2 {
-    font-family: 'Amaranth', sans-serif;
-    
+    font-family: "Amaranth", sans-serif;
+
     font-size: 2rem;
     color: #323b46;
     text-align: center;
@@ -46,7 +46,7 @@ button.btn {
     border-radius: 2rem;
     padding: 1rem 3rem;
     font-size: 1rem;
-    font-family: "Lexend", sans-serif;
+    font-family: "Lexend", sans-serif !important;
     cursor: pointer;
 }
 
@@ -138,11 +138,9 @@ p {
 /* -------x------- navbar ---------x------- */
 
 .poster {
-    width: 50%;
-    float: left;
-    margin-right: 1em;
-    margin-bottom: 1em;
-    margin-left: 0.7em;
+    width: 80%;
+
+    margin: auto;
 }
 
 .content {
@@ -169,6 +167,6 @@ p {
 
 @media only screen and (max-width: 768px) {
     .poster {
-        width: 100%;
+        width: 98%;
     }
 }
