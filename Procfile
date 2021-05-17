@@ -1,1 +1,1 @@
-web: node ./backend blog-site/blogapp/app.js
+web: node app.js
