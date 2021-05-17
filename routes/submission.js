@@ -11,10 +11,14 @@ var path = require("path");
 router.use(express.static(__dirname + "./public"));
 
 // checking user is login or not in a function
-function checkLoginuser(req, res, next) {
-    var usertoken = localStorage.getItem("usertoken");
+async function checkLoginuser(req, res, next) {
+    var usertoken = await localStorage.getItem("usertoken");
     try {
-        var decoded = jwt.verify(usertoken, "logintoken");
+        if (req.session.userID) {
+            var decoded = await jwt.verify(usertoken, "logintoken");
+        } else {
+            res.redirect("/login");
+        }
     } catch (err) {
         res.redirect("/login");
     }
@@ -39,12 +43,11 @@ var upload = multer({ storage: Storage }).single("file");
 var blogshow = blogModule.find({});
 
 router.post("/submission", upload, (req, res) => {
-    var usertoken = localStorage.getItem("loginuser");
     var author = usertoken;
     var title = req.body.Blog_title;
     var desc = req.body.Blog_desc;
     var content = req.body.Blog_content;
-    var usertoken = localStorage.getItem("loginuser");
+    var usertoken = req.session.userID;
     var image = req.file.filename;
 
     var Blog = new blogModule({
@@ -70,7 +73,7 @@ router.post("/amend/:id", upload, async function (req, res, next) {
     var desc = req.body.Blog_desc;
     var content = req.body.Blog_content;
     // console.log(content);
-    var usertoken = localStorage.getItem("loginuser");
+    var usertoken = req.session.userID;
     // console.log("this is image"+ req.body.updateimage);
     if (req.body.updateimage == 1) {
         var image = req.file.filename;
@@ -88,6 +91,7 @@ router.post("/amend/:id", upload, async function (req, res, next) {
         update.body = content;
         update.image = image;
         await update.save();
+
         res.render("submission", {
             title: "Submission",
             msg: "Blog edited succesfully",

@@ -16,7 +16,11 @@ const blogmodel = require("../modules/blog");
 async function checkLoginuser(req, res, next) {
     var usertoken = await localStorage.getItem("usertoken");
     try {
-        var decoded = await jwt.verify(usertoken, "logintoken");
+        if (req.session.userID) {
+            var decoded = await jwt.verify(usertoken, "logintoken");
+        } else {
+            res.redirect("/login");
+        }
     } catch (err) {
         res.redirect("/login");
     }
@@ -131,12 +135,9 @@ router.get("/signup", function (req, res, next) {
 // router.get("/search", function (req, res, next) {
 //   res.render("search", { title: "Express", msg: "" });
 // });
-router.get("/logout", function (req, res, next) {
-    res.render("logout", {});
-});
 
 router.get("/submission", checkLoginuser, async function (req, res, next) {
-    var usertoken = localStorage.getItem("loginuser");
+    var usertoken = req.session.userID;
     res.render("submission", {
         title: "Submission",
         userdetails: usertoken,
@@ -147,7 +148,7 @@ router.get("/submission", checkLoginuser, async function (req, res, next) {
 // delete method for deleting our blog
 router.get("/delete/:id", checkLoginuser, async function (req, res, next) {
     console.log(req.params.id);
-    var usertoken = localStorage.getItem("loginuser");
+    var usertoken = req.session.userID;
     await blogModule.findByIdAndDelete(req.params.id);
     res.render("submission", {
         title: "Submission",
@@ -158,7 +159,7 @@ router.get("/delete/:id", checkLoginuser, async function (req, res, next) {
 //change method
 router.get("/change/:id", checkLoginuser, async function (req, res, next) {
     console.log(req.params.id);
-    var usertoken = localStorage.getItem("loginuser");
+    var usertoken = req.session.userID;
     var change = blogModule.findById(req.params.id);
     change.exec((err, data) => {
         if (err) throw err;
@@ -229,6 +230,7 @@ router.post("/login", checkuserexist, function (req, res, next) {
             // storing token in local storage
             localStorage.setItem("usertoken", token);
             localStorage.setItem("loginuser", loginuser);
+            req.session.userID = loginuser;
 
             res.redirect("/submission");
         } else {
@@ -311,11 +313,17 @@ router.post("/mailer", function (req, res, next) {
 
 // logout method
 router.post("/logout", function (req, res, next) {
-    localStorage.removeItem("usertoken");
-    localStorage.removeItem("loginuser");
+    req.session.destroy(function (err) {
+        // cannot access session here
+        if (err) {
+            res.redirect("/");
+        }
+    });
+
     res.render("login", {
         title: "Login Page",
         msg: "Login To submit blog",
     });
 });
+
 module.exports = router;
