@@ -1,1 +1,1 @@
-web: node "backend blogsite"/blogapp/app.js
+web: node ./backend blog-site/blogapp/app.js
