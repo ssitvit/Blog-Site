@@ -23,9 +23,7 @@ function checkLoginuser(req,res,next){
 router.use(express.urlencoded({ extended: true }));
 
 //Get Submission
-router.get('/submission',checkLoginuser, function(req, res, next) {
-    res.render('submission', { title: 'Submission' });
-});
+
 
 // diskstorage multer function
 var Storage=multer.diskStorage({
@@ -38,6 +36,7 @@ var Storage=multer.diskStorage({
 
 // middle ware for multer 
 var upload=multer({storage:Storage}).single('file');
+
 
 // function for finding data from our data base 
 var blogshow=blogModule.find({});
@@ -74,6 +73,37 @@ router.post('/submission',upload,(req,res)=>{
   })
 })
 
+router.post("/amend/:id",upload, function (req, res, next) {
+  
+  var author =usertoken ;
+  var title = req.body.Blog_title;
+  var desc = req.body.Blog_desc;
+  var content = req.body.Blog_content;
+  // console.log(content);
+  var usertoken=localStorage.getItem("loginuser");
+  // console.log("this is image"+ req.body.updateimage);
+  if(req.body.updateimage==1){var image = req.file.filename;}
+  else{
+    image=req.body.previousimage
+  }
+console.log("show file name"+req.body.previousimage);
+  console.log(req.params.id);
+  var update=blogModule.findByIdAndUpdate(req.params.id,{
+    author:usertoken,
+    title: title,
+    desc: desc,
+    body: content,
+    image:image,
+
+  },{ runValidators: true });
+  update.exec(function (err, data) {
+    if (err) throw err;
+
+    res.render("submission",{title:"Submission",msg:"Blog edited succesfully",userdetails: usertoken});
+
+    
+  });
+});
 
 
 module.exports = router;
