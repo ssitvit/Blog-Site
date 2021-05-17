@@ -36,26 +36,46 @@
     </div>
     <div class="container">
         <div class="holder">
-            <form action="/submission" method="POST" class="blog" enctype="multipart/form-data">
+            <form action="/amend/<%= records._id%>" method="POST" class="blog" enctype="multipart/form-data">
                 <div class="title">
                     Blog Submission
                 </div>
                 <div>
                     <%= msg %> 
                 </div>
+                
                 <input type="text" class="input_1" placeholder="<%=userdetails%>" enctype="multipart/form-data" name="" disabled="disabled">
-                <input type="text" class="input_1"required placeholder="Blog title" name="Blog_title">
-                <textarea class="input_2" name="Blog_desc"required placeholder="Description"></textarea>
-                <textarea id="Content" name="Blog_content" required placeholder="Content"></textarea>
-                <div class="image_cont">
-                    <label for="Blog_images">Images: </label>
-                    <input type="file" required class="Blog_images" name="file">
-                </div>
+                <input type="text" class="input_1"required placeholder="<%= records.title %> " name="Blog_title">
+                <textarea class="input_2" name="Blog_desc"required placeholder="Description"><%= records.desc %></textarea>
+                <textarea id="Content" name="Blog_content" required placeholder="Content"><%= records.body %></textarea>
+                <textarea readonly name="previousimage"  placeholder="image" style="display: none;" ><%= records.image %></textarea>
+                <label for="chkPassport">
+                        <input type="checkbox"name="updateimage" id="chkPassport" value="1"/>
+                        Do you want to update image?
+                        <div id="insert"></div>
+                    </label>
+                   
+                
+                
                 <input type="submit" value="Submit" class="btn" name="Submit_btn">
             </form>
         </div>
     </div>
+    
+    
+    
+    <script type="text/javascript">
+        document.getElementById("chkPassport").addEventListener("change", displayDate,{once:true});
+        
+        function displayDate() {
+         var y=document.getElementById('insert');
+        y.innerHTML=`<input type="file"required id="txtPassportNumber" name=file />`
+         console.log(y)
+    }
+        
+        
 
+    </script>
 </body>
 
 </html>

@@ -3,24 +3,22 @@ var router = express.Router();
 // schema external module link
 var userModule = require("../modules/blog");
 var blogModule = require("../modules/blog_sub");
-// mailer for subscription 
-var nodemailer = require('nodemailer');
+// mailer for subscription
+var nodemailer = require("nodemailer");
 // web token module
 var jwt = require("jsonwebtoken");
 
 // for dynamic showing of data
 const moment = require("moment");
+const blogmodel = require("../modules/blog");
 
 // checking user is login or not in a function
-function checkLoginuser(req, res, next) {
-  var usertoken = localStorage.getItem("usertoken");
+async function checkLoginuser(req, res, next) {
+  var usertoken = await localStorage.getItem("usertoken");
   try {
-    var decoded = jwt.verify(usertoken, "logintoken");
+    var decoded = await jwt.verify(usertoken, "logintoken");
   } catch (err) {
-    res.render("login", {
-      title: "Login Page",
-      msg: "Login first",
-    });
+    res.redirect("/login");
   }
   next();
 }
@@ -76,27 +74,60 @@ function checkuserexist(req, res, next) {
   });
 }
 
-
 // function for finding data from our data base
-var blogshow = blogModule.find().sort({createdAt: -1});
+
 
 /* GET home page. */
 
 router.get("/", function (req, res, next) {
-
+  
+var blogshow = blogModule.find().sort({ createdAt: -1 }).limit(2).skip(0);
+var skip=2;
   blogshow.exec(function (err, data) {
     if (err) throw err;
 
     res.render("blog", {
-      title: "Employee records",
+      title: "",
       records: data,
+      skip:skip
     });
   });
   // res.render('blog', { title: 'Express' });
 });
+// getting limited data in page method 
+router.get("/main/:Id", function (req, res, next) {
+  
+    var y=req.params.Id;
+    skip=parseInt(y);
+  
+  var blogshow = blogModule.find().sort({ createdAt: -1 }).limit(2).skip(skip);
+  skip=skip+2;
+  blogshow.exec(function (err, data) {
+    if (err) throw err;
+
+    res.render("blog", {
+      title: "",
+      records: data,
+      skip:skip,
+    });
+  });
+ 
+});
 
 router.get("/login", function (req, res, next) {
-  res.render("login", { title: "Express", msg: "" });
+  res.render("login", { title: "Express", msg: "Login First" });
+});
+router.get("/edit/:id", checkLoginuser, function (req, res, next) {
+  console.log("this is being sent to backend" + req.params.id);
+
+  var blogsearch = blogModule.find({ author: req.params.id });
+  blogsearch.exec(function (err, data) {
+    // console.log("data coming from backend "+data);
+    if (err) throw err;
+    res.render("search", { title: "Express", records: data, msg: "" });
+  });
+
+  // res.render("login", { title: "Express", msg: "" });
 });
 router.get("/signup", function (req, res, next) {
   res.render("signup", { title: "Express", msg: "" });
@@ -108,12 +139,39 @@ router.get("/logout", function (req, res, next) {
   res.render("logout", {});
 });
 
-router.get("/submission", checkLoginuser, function (req, res, next) {
+router.get("/submission", checkLoginuser,async function (req, res, next) {
   var usertoken = localStorage.getItem("loginuser");
   res.render("submission", {
     title: "Submission",
     userdetails: usertoken,
     msg: "",
+  });
+});
+
+// delete method for deleting our blog
+router.get("/delete/:id", checkLoginuser, async function (req, res, next) {
+  console.log(req.params.id);
+  var usertoken = localStorage.getItem("loginuser");
+  await blogModule.findByIdAndDelete(req.params.id);
+  res.render("submission", {
+    title: "Submission",
+    userdetails: usertoken,
+    msg: "Blog deleted",
+  });
+});
+//change method
+router.get("/change/:id", checkLoginuser, async function (req, res, next) {
+  console.log(req.params.id);
+  var usertoken = localStorage.getItem("loginuser");
+  var change = blogModule.findById(req.params.id);
+  change.exec((err, data) => {
+    if (err) throw err;
+    res.render("edit", {
+      title: "Submission",
+      userdetails: usertoken,
+      msg: "Edit your blog",
+      records: data,
+    });
   });
 });
 
@@ -150,7 +208,7 @@ router.post("/signup", checkuser, checkemail, function (req, res, next) {
 });
 
 // login page post method
-router.post("/login",checkuserexist, function (req, res, next) {
+router.post("/login", checkuserexist, function (req, res, next) {
   var loginuser = req.body.Username;
   var loginpass = req.body.Password;
 
@@ -159,7 +217,9 @@ router.post("/login",checkuserexist, function (req, res, next) {
   var checkuser = userModule.findOne({ username: loginuser });
   console.log(checkuser.getOptions);
   checkuser.exec((err, data) => {
-    if (err) {console.log("fir error agya")}
+    if (err) {
+      console.log("fir error agya");
+    }
     console.log(data.username);
     // if(data.username=null){
     //   res.redirect("/signup")
@@ -167,7 +227,6 @@ router.post("/login",checkuserexist, function (req, res, next) {
     var getpassword = data.password;
     var getid = data._id;
     // console.log(data);
-
 
     if (loginpass == getpassword) {
       var token = jwt.sign({ userID: getid }, "logintoken");
@@ -182,20 +241,20 @@ router.post("/login",checkuserexist, function (req, res, next) {
         msg: "Invalid username and password",
       });
     }
-  //  }
+    //  }
   });
 
   // res.render('login', { title: 'Express' });
 });
 
-// readmore function redirect 
+// readmore function redirect
 router.get("/readmore/:id", function (req, res, next) {
   console.log(req.params.id);
   console.log(req.params);
-  var blogsingle = blogModule.find({_id:req.params.id});
+  var blogsingle = blogModule.find({ _id: req.params.id });
   blogsingle.exec(function (err, data) {
     if (err) throw err;
-
+    console.log("this is data sent to readmore"+data)
     res.render("singleblog", {
       title: "Employee records",
       records: data,
@@ -204,51 +263,51 @@ router.get("/readmore/:id", function (req, res, next) {
   // res.render("logout", {});
 });
 
-// search functionality 
-router.post("/search",async function (req, res, next) {
-  var search=req.body.search;
-  
+// search functionality
+router.post("/search", async function (req, res, next) {
+  var search = req.body.search;
+
   // var blogsearch = blogModule.find( { author:search } );
   // blogModule.createIndex( { title: "text" } );
 
-  var blogsearch = blogModule.find( { $text: {$search:search, $caseSensitive: false}  } );
-  blogsearch.exec(function(err,data){
-
+  var blogsearch = blogModule.find({
+    $text: { $search: search, $caseSensitive: false },
+  });
+  blogsearch.exec(function (err, data) {
     // console.log("data coming from backend "+data);
     if (err) throw err;
-    res.render("search", { title: "Express", records:data  });
+    res.render("search1", { title: "Express", records: data, msg: "" });
   });
-  
 });
 
-// mailer 
+// mailer
 router.post("/mailer", function (req, res, next) {
-  var mail=req.body.mail;
+  var mail = req.body.mail;
   console.log(mail);
   var transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
-      user: 'ganiiscool@gmail.com',
-      pass: 'xdjcrasbbxsdwyua'
+      user: "ganiiscool@gmail.com",
+      pass: "xdjcrasbbxsdwyua",
     },
-    tls:{
-      rejectUnauthorized:false
-    }
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
-  
+
   var mailOptions = {
-    from: 'ganiiscool@gmail.com',
-    to: 'mail',
-    subject: 'You have just subscribed to IEEE SSIT VIT Blogs',
-    text: 'That was easy!'
+    from: "ganiiscool@gmail.com",
+    to: "mail",
+    subject: "You have just subscribed to IEEE SSIT VIT Blogs",
+    text: "That was easy!",
   };
-  
-  transporter.sendMail(mailOptions, function(error, info){
+
+  transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
       res.redirect("/");
     } else {
-      console.log('Email sent: ' + info.response);
+      console.log("Email sent: " + info.response);
       res.redirect("/");
     }
   });

@@ -8,7 +8,8 @@ const local = "mongodb://localhost:27017/blog"
 mongoose.connect(local,{
     useNewUrlParser:true,
     useCreateIndex:true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    
 }),()=>{
   console.log('Connected to Database')
 };
@@ -47,8 +48,16 @@ const blogSchema = new mongoose.Schema({
 blogSchema.pre('validate',function(next){
     if(this.body){
         this.sanitizedHtml=dompurify.sanitize(marked(this.body))
+        console.log(this.sanitizedHtml);
     }
     next()
-})
+});
+// blogSchema.pre('updateOne',function(next){
+//     if(this.body){
+//         this.sanitizedHtml=dompurify.sanitize(marked(this.body))
+//         console.log("santize html"+this.sanitizedHtml);
+//     }
+//     next()
+// })
 const submodel = mongoose.model("blog_sub", blogSchema);
 module.exports = submodel;
