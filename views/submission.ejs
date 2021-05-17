@@ -1,61 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/stylesheets/blog_submission_style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %> </title>
-    <link rel="stylesheet" href="/stylesheets/blog_submission_style.css">
-</head>
+    <body>
+        <div class="navbar">
+            <a href="/" class="home">
+                <img src="/images/submission_page_images/back.svg" alt="" class="back_btn" />
+                <p>Home</p>
+            </a>
 
-<body>
-    <div class="navbar">
-        <a href="/" class="home">
-            <img src="/images/submission_page_images/back.svg" alt="" class="back_btn">
-            <p>Home</p>
-        </a>
-        <div class="outer_user">
-            <div class="user">
-                <img src="/images/submission_page_images/user.png" alt="" class="user_img">
-                <p>
-                    <%=userdetails%>
-                </p>
+            <div class="outer_user">
+                <div class="user">
+                    <img src="/images/submission_page_images/user.png" alt="" class="user_img" />
+                    <p><%=userdetails%></p>
+                </div>
+                <!-- <form action="/logout" class="logout_btn" method="POST"> <button type="submit">Logout</button></form> -->
+
+                <form action="/logout" method="POST">
+                    <Button class="logout_btn" type="submit">Logout</Button>
+                </form>
+
+                <form action="/edit/<%=userdetails%>" method="GET">
+                    <Button class="logout_btn" type="submit">Edit blogs</Button>
+                </form>
             </div>
-            <!-- <form action="/logout" class="logout_btn" method="POST"> <button type="submit">Logout</button></form> -->
-            
-            <div class="logout_btn">
-                <form action="/logout" method="POST"><Button style="background-color: #5bc9cfc9; outline: none;" type="submit">Logout</Button></form>
-            </div>
-            <div class="logout_btn">
-                <form action="/edit/<%=userdetails%>" method="GET"><Button style="background-color: #5bc9cfc9; outline: none;" type="submit">Edit blogs</Button></form>
-            </div>
-        
         </div>
-
-    </div>
-    <div class="container">
-        <div class="holder">
-            <form action="/submission" method="POST" class="blog" enctype="multipart/form-data">
-                <div class="title">
-                    Blog Submission
-                </div>
-                <div>
-                    <%= msg %> 
-                </div>
-                <input type="text" class="input_1" placeholder="<%=userdetails%>" enctype="multipart/form-data" name="" disabled="disabled">
-                <input type="text" class="input_1"required placeholder="Blog title" name="Blog_title">
-                <textarea class="input_2" name="Blog_desc"required placeholder="Description"></textarea>
-                <textarea id="Content" name="Blog_content" required placeholder="Content"></textarea>
-                <div class="image_cont">
-                    <label for="Blog_images">Images: </label>
-                    <input type="file" required class="Blog_images" name="file">
-                </div>
-                <input type="submit" value="Submit" class="btn" name="Submit_btn">
-            </form>
+        <div class="container">
+            <div class="holder">
+                <form action="/submission" method="POST" class="blog" enctype="multipart/form-data">
+                    <div class="title">Blog Submission</div>
+                    <div><%= msg %></div>
+                    <input
+                        type="text"
+                        class="input_1"
+                        placeholder="<%=userdetails%>"
+                        enctype="multipart/form-data"
+                        name=""
+                        disabled="disabled"
+                    />
+                    <input
+                        type="text"
+                        class="input_1"
+                        required
+                        placeholder="Blog title"
+                        name="Blog_title"
+                    />
+                    <textarea
+                        class="input_2"
+                        name="Blog_desc"
+                        required
+                        placeholder="Description"
+                    ></textarea>
+                    <textarea
+                        id="Content"
+                        name="Blog_content"
+                        required
+                        placeholder="Content"
+                    ></textarea>
+                    <div class="image_cont">
+                        <label for="Blog_images">Images: </label>
+                        <input type="file" required class="Blog_images" name="file" />
+                    </div>
+                    <input type="submit" value="Submit" class="btn" name="Submit_btn" />
+                </form>
+            </div>
         </div>
-    </div>
-
-</body>
-
+    </body>
 </html>
