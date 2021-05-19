@@ -105,11 +105,17 @@
                     <hr>
                     
                     <% })} else{ %>
-      
-                        <td>No blog added</td>
+                        
+                        <div class="noblogs">No More Blogs</div>
                         <% } %>
-
-                        <a href="/main/<%=skip%>">Read next blogs </button></a>  
+                        <%if(records.length>0){ %>
+                        <a class="readmore" href="/main/<%=skip%>">Read next blogs </a>
+                        
+                        <%} %>  
+                        
+                        
+                        
+                        
                 </div>
                 <aside class="sidebar">
                     <div class="category">
@@ -297,7 +303,11 @@
     </footer>
 
     <!-- -------------x------------- Footer --------------------x------------------- -->
-
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>
     <!-- Jquery Library file -->
     <script src="/javascripts/blog_js/Jquery3.4.1.min.js"></script>
 

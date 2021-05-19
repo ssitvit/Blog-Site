@@ -29,7 +29,26 @@ body {
 }
 
 /* ---------------- Global Classes ---------------*/
-
+.noblogs{
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.readmore{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height:7vh ;
+    width:auto ;
+    border: 1px solid black;
+    font-family: cursive;
+    font-weight: 900;
+    font-size: 1.5rem;
+    background-color: #f5f5f57d;
+    border-radius: 2rem;
+    margin-top: 2rem;
+    
+}
 a {
     text-decoration: none;
     color: var(--text-gray);
