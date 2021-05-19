@@ -43,11 +43,11 @@ var upload = multer({ storage: Storage }).single("file");
 var blogshow = blogModule.find({});
 
 router.post("/submission", upload, (req, res) => {
-    var author = usertoken;
+    var author = req.session.userID;
     var title = req.body.Blog_title;
     var desc = req.body.Blog_desc;
     var content = req.body.Blog_content;
-    var usertoken = req.session.userID;
+    // var usertoken = req.session.userID;
     var image = req.file.filename;
 
     var Blog = new blogModule({
@@ -62,18 +62,18 @@ router.post("/submission", upload, (req, res) => {
         res.render("submission", {
             title: "Submitted",
             msg: "Your Blog has been submitted",
-            userdetails: usertoken,
+            userdetails: req.session.userID,
         });
     });
 });
 
 router.post("/amend/:id", upload, async function (req, res, next) {
-    var author = usertoken;
+    var author = req.session.userID;
     var title = req.body.Blog_title;
     var desc = req.body.Blog_desc;
     var content = req.body.Blog_content;
     // console.log(content);
-    var usertoken = req.session.userID;
+    // var usertoken = req.session.userID;
     // console.log("this is image"+ req.body.updateimage);
     if (req.body.updateimage == 1) {
         var image = req.file.filename;
@@ -95,7 +95,7 @@ router.post("/amend/:id", upload, async function (req, res, next) {
         res.render("submission", {
             title: "Submission",
             msg: "Blog edited succesfully",
-            userdetails: usertoken,
+            userdetails:req.session.userID,
         });
         // var update = blogModule.findByIdAndUpdate(
         //     req.params.id,
