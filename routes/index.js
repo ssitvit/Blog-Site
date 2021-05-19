@@ -106,7 +106,7 @@ router.get("/login", function (req, res, next) {
 router.get("/edit/:id", checkLoginuser, function (req, res, next) {
     console.log("this is being sent to backend" + req.params.id);
 
-    var blogsearch = blogModule.find({ author: req.params.id });
+    var blogsearch = blogModule.find({email:req.params.id});
     blogsearch.exec(function (err, data) {
         // console.log("data coming from backend "+data);
         if (err) throw err;
@@ -123,12 +123,19 @@ router.get("/signup", function (req, res, next) {
 // });
 
 router.get("/submission", checkLoginuser, async function (req, res, next) {
-    var usertoken = req.session.userID;
-    res.render("submission", {
-        title: "Submission",
-        userdetails: usertoken,
-        msg: "",
-    });
+    var usertoken=req.session.userID;
+    var useremail = req.session.userEMAIL;
+    var email = userModule.findOne({ email:useremail});
+    email.exec((err,data)=>{
+
+        res.render("submission", {
+            title: "Submission",
+            userdetails: usertoken,
+            data:data,
+            msg:"",
+        })
+    })
+   
 });
 
 // delete method for deleting our blog
@@ -195,8 +202,6 @@ router.post("/login", checkuserexist, function (req, res, next) {
     var loginemail = req.body.email;
     var loginpass = req.body.Password;
 
-    
-
     var checkuser = userModule.findOne({ email: loginemail });
     console.log(checkuser.getOptions);
     checkuser.exec((err, data) => {
@@ -216,12 +221,14 @@ router.post("/login", checkuserexist, function (req, res, next) {
             localStorage.setItem("usertoken", token);
             localStorage.setItem("loginuser", loginuser);
             req.session.userID = loginuser;
+            req.session.userEMAIL = loginemail;
 
-            res.redirect("/submission");
+            res.render("submission",{data:data, msg: "",title:"submission"});
         } else {
             res.render("login", {
                 title: "Login Page",
                 msg: "Invalid username and password",
+                
             });
         }
         //  }

@@ -18,7 +18,7 @@
             <div class="outer_user">
                 <div class="user">
                     <img src="/images/submission_page_images/user.png" alt="" class="user_img" />
-                    <p><%=userdetails%></p>
+                    <p><%=data.username%></p>
                 </div>
                 <!-- <form action="/logout" class="logout_btn" method="POST"> <button type="submit">Logout</button></form> -->
 
@@ -26,7 +26,7 @@
                     <Button class="logout_btn" type="submit">Logout</Button>
                 </form>
 
-                <form action="/edit/<%=userdetails%>" method="GET">
+                <form action="/edit/<%= data.email%>" method="GET">
                     <Button class="logout_btn" type="submit">Edit blogs</Button>
                 </form>
             </div>
@@ -39,10 +39,10 @@
                     <input
                         type="text"
                         class="input_1"
-                        placeholder="<%=userdetails%>"
+                        placeholder="<%=data.username%>"
                         enctype="multipart/form-data"
                         name=""
-                        disabled="disabled"
+                       readonly
                     />
                     <input
                         type="text"
@@ -57,6 +57,7 @@
                         required
                         placeholder="Description"
                     ></textarea>
+                    
                     <textarea
                         id="Content"
                         name="Blog_content"
