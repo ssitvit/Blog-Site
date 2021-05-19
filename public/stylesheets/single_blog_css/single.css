@@ -154,10 +154,11 @@ p {
 .blog > img {
     display: block;
     width: 75%;
+    border-radius: 8px;
     margin: 4em auto;
-    box-shadow: 1px 1px 64px 0px rgba(25, 52, 63, 0.61);
-    -webkit-box-shadow: 1px 1px 64px 0px rgba(25, 52, 63, 0.61);
-    -moz-box-shadow: 1px 1px 64px 0px rgba(25, 52, 63, 0.61);
+    box-shadow: 1px 1px 64px -4px rgba(25, 52, 63, 0.61);
+    -webkit-box-shadow: 1px 1px 64px -4px rgba(25, 52, 63, 0.61);
+    -moz-box-shadow: 1px 1px 64px -4px rgba(25, 52, 63, 0.61);
 }
 
 .content {
