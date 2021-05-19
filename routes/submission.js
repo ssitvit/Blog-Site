@@ -44,10 +44,10 @@ var blogshow = blogModule.find({});
 
 router.post("/submission", upload, (req, res) => {
     var author = req.session.userID;
+    var email = req.session.userEMAIL;
     var title = req.body.Blog_title;
     var desc = req.body.Blog_desc;
     var content = req.body.Blog_content;
-    // var usertoken = req.session.userID;
     var image = req.file.filename;
 
     var Blog = new blogModule({
@@ -56,14 +56,17 @@ router.post("/submission", upload, (req, res) => {
         desc: desc,
         body: content,
         image: image,
+        email:email,
     });
     Blog.save((err, doc) => {
         if (err) throw err;
-        res.render("submission", {
-            title: "Submitted",
-            msg: "Your Blog has been submitted",
-            userdetails: req.session.userID,
-        });
+        res.redirect('/submission')
+        // res.render("submission", {
+        //     title: "Submitted",
+        //     msg: "Your Blog has been submitted",
+        //     userdetails: req.session.userID,
+        //     email :email ,
+        // });
     });
 });
 
@@ -72,17 +75,12 @@ router.post("/amend/:id", upload, async function (req, res, next) {
     var title = req.body.Blog_title;
     var desc = req.body.Blog_desc;
     var content = req.body.Blog_content;
-    // console.log(content);
-    // var usertoken = req.session.userID;
-    // console.log("this is image"+ req.body.updateimage);
+
     if (req.body.updateimage == 1) {
         var image = req.file.filename;
     } else {
         image = req.body.previousimage;
     }
-
-    // console.log("show file name" + req.body.previousimage);
-    // console.log(req.params.id);
 
     try {
         var update = await blogModule.findById(req.params.id);
@@ -92,26 +90,8 @@ router.post("/amend/:id", upload, async function (req, res, next) {
         update.image = image;
         await update.save();
 
-        res.render("submission", {
-            title: "Submission",
-            msg: "Blog edited succesfully",
-            userdetails:req.session.userID,
-        });
-        // var update = blogModule.findByIdAndUpdate(
-        //     req.params.id,
-        //     {
-        //         author: usertoken,
-        //         title: title,
-        //         desc: desc,
-        //         body: content,
-        //         image: image,
-        //     },
-        //     { runValidators: true }
-        // );
-        // update.exec(function (err, data) {
-        //     if (err) throw err;
-
-        // });
+        res.redirect('/submission')
+     
     } catch (e) {
         console.log(e);
     }
