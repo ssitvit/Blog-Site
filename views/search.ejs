@@ -1,181 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Blogs-SSITVIT</title>
+        <!-- Bootstrap  -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+            crossorigin="anonymous"
+        />
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="/stylesheets/blog_css/all.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blogs-SSITVIT</title>
-    <!-- Bootstrap  -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="/stylesheets/blog_css/all.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <!-- --------- Owl-Carousel ------------------->
-    <link rel="stylesheet" href="/stylesheets/blog_css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/stylesheets/blog_css/owl.theme.default.min.css">
+        <!-- --------- Owl-Carousel ------------------->
+        <link rel="stylesheet" href="/stylesheets/blog_css/owl.carousel.min.css" />
+        <link rel="stylesheet" href="/stylesheets/blog_css/owl.theme.default.min.css" />
 
-    <!-- ------------ AOS Library ------------------------- -->
-    <link rel="stylesheet" href="/stylesheets/blog_css/aos.css">
+        <!-- ------------ AOS Library ------------------------- -->
+        <link rel="stylesheet" href="/stylesheets/blog_css/aos.css" />
 
-    <!-- Custom Style   -->
-    <link rel="stylesheet" href="/stylesheets/blog_css/Style.css">
+        <!-- Custom Style   -->
+        <link rel="stylesheet" href="/stylesheets/blog_css/Style.css" />
+    </head>
 
-</head>
+    <body>
+        <!-- ----------------------------  Navigation ---------------------------------------------- -->
 
-<body>
+        <nav class="nav">
+            <div class="nav-menu flex-row">
+                <div class="nav-brand">
+                    <a href="https://www.ssitvit.tech/" class="text-gray"
+                        ><img src="/images/blog_assets/logo.png" alt="SSIT"
+                    /></a>
+                </div>
 
-    <!-- ----------------------------  Navigation ---------------------------------------------- -->
-
-    <nav class="nav">
-        <div class="nav-menu flex-row">
-            <div class="nav-brand">
-                <a href="https://www.ssitvit.tech/" class="text-gray"><img src="/images/blog_assets/logo.png" alt="SSIT"></a>
-            </div>
-            
-            <!-- <div class="toggle-collapse">
+                <!-- <div class="toggle-collapse">
                 <div class="toggle-icons">
                     <i class="fas fa-bars"></i>
                 </div>
             </div> -->
-            <div>
-                <ul class="nav-items">
-                    <li class="nav-link">
-                        <a href="/">Home</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="/submission">Submit Blog</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#contactus">Contact Us</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="social text-gray">
-                <form action="/search" method="POST">
-                    <input type="text" name="search" placeholder="Search a blog">
-                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </form>
-                    
-               
-            </div>
-        </div>
-    </nav>
-
-    <!----------------------------- Main Site Section ------------------------------>
-
-    <main>
-
-        <!-- -----------x---------- Site Content -------------x------------>
-        <h2><%=msg%></h2>
-        <div class="row col-sm-12 mb-3" style="margin-left: 1%; margin-top: 2%;">
-            <%if(records.length>0){ %>
-                <%records.forEach(function(row){%>
-            <div class="col mb-3" style="display: flex; justify-content: space-evenly;">
-            <div class="card" style="width: 18rem;">
-                <img src="/upload/<%= row.image %>" class="card-img-top" alt="Blog">
-                <div class="card-body">
-                  <h5 class="card-title"><%= row.title %></h5>
-                  <p class="card-text"><%= row.desc %></p>
-
-                  <a href="/readmore/<%= row._id %>" style="background-color: #a1c4fd;" class="btn  btn-info">Read more</a>
-
-                  <a href="/delete/<%= row._id %>" style="background-color: #a1c4fd;" class="btn  btn-danger">Delete</a>
-                  <a href="/change/<%= row._id %>" style="background-color: #a1c4fd;" class="btn btn-info">Edit</a>
-
-                 
-
-                  
-                </div>
-              </div>
-            </div>
-            <% })} else{ %>
-    
-              <td>No blog to show</td>
-              <% } %>
-          
-          
-          
-        </div>
-            
-             
-      
-       
-
-        
-
-    </main>
-
-    <!---------------x------------- Main Site Section ---------------x-------------->
-
-
-    <!----------------------------- Footer ------------------------------------------>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="about-us" data-aos="fade-right" data-aos-delay="200">
-                <h2>About us</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quia atque nemo ad modi officiis
-                    iure, autem nulla tenetur repellendus.</p>
-            </div>
-           
-            <div class="newsletter" data-aos="fade-right" data-aos-delay="200">
-                <h2>Newsletter</h2>
-                <p>Stay update with our latest</p>
-                <div class="form-element">
-                    <form action="/mailer" method="POST">
-                    <input type="email" name="mail" placeholder="Email">
-                  <span> <button type="submit"><i class="fa fa-envelope-o" aria-hidden="true"  style="color: black;"></i>
-                    </button>
-                </span>
-                </form>
-                </div>
-            </div>
-            <div class="contactus" data-aos="fade-left" data-aos-delay="200" id="contactus">
-                <h2>Contact Us</h2>
-                <p>+91 7294992887</p>
-                <a href="mailto:ieeeessit@vit.ac.in"><p>ieeeessit@vit.ac.in</p></a>
-            </div>
-            <div class="follow" data-aos="fade-left" data-aos-delay="200">
-                <h2>Follow us</h2>
-                <p>Let us be Social</p>
                 <div>
-                <a href="https://www.facebook.com/SSITVIT/"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-                <a href="https://instagram.com/ieeessit/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="https://www.linkedin.com/in/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                <a href="https://github.com/ieeessitvit"><i class="fa fa-github" aria-hidden="true"></i></a>
+                    <ul class="nav-items">
+                        <li class="nav-link">
+                            <a href="/">Home</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="/submission">Login</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#contactus">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="social text-gray">
+                    <form action="/search" method="POST">
+                        <input type="text" name="search" placeholder="Search a blog" />
+                        <button type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
-        </div>
-        <div class="rights flex-row">
-            <h4 class="text-gray">
-                Copyright ©2021 All rights reserved | made by
-                <a href="https://www.ssitvit.tech/" target="_black">IEEE SSIT-VIT</a>
-            </h4>
-        </div>
-        <div class="move-up">
-            <span><i class="fa fa-arrow-circle-up  fa-3x"  aria-hidden="true"></i></span>
-        </div>
-    </footer>
+        </nav>
 
-    <!-- -------------x------------- Footer --------------------x------------------- -->
+        <!----------------------------- Main Site Section ------------------------------>
 
-    <!-- Jquery Library file -->
-    <script src="/javascripts/blog_js/Jquery3.4.1.min.js"></script>
+        <main>
+            <!-- -----------x---------- Site Content -------------x------------>
+            <h2><%=msg%></h2>
+            <div class="row col-sm-12 mb-3" style="margin-left: 1%; margin-top: 2%">
+                <%if(records.length>0){ %> <%records.forEach(function(row){%>
+                <div class="col mb-3" style="display: flex; justify-content: space-evenly">
+                    <div class="card" style="width: 18rem">
+                        <img src="/upload/<%= row.image %>" class="card-img-top" alt="Blog" />
+                        <div class="card-body">
+                            <h5 class="card-title"><%= row.title %></h5>
+                            <p class="card-text"><%= row.desc %></p>
 
-    <!-- --------- Owl-Carousel js ------------------->
-    <script src="/javascripts/blog_js/owl.carousel.min.js"></script>
+                            <a
+                                href="/readmore/<%= row._id %>"
+                                style="background-color: #a1c4fd"
+                                class="btn btn-info"
+                                >Read more</a
+                            >
 
-    <!-- ------------ AOS js Library  ------------------------- -->
-    <script src="/javascripts/blog_js/aos.js"></script>
+                            <a
+                                href="/delete/<%= row._id %>"
+                                style="background-color: #a1c4fd"
+                                class="btn btn-danger"
+                                >Delete</a
+                            >
+                            <a
+                                href="/change/<%= row._id %>"
+                                style="background-color: #a1c4fd"
+                                class="btn btn-info"
+                                >Edit</a
+                            >
+                        </div>
+                    </div>
+                </div>
+                <% })} else{ %>
 
-    <!-- Custom Javascript file -->
-    <script src="/javascripts/blog_js/main.js"></script>
+                <td>No blog to show</td>
+                <% } %>
+            </div>
+        </main>
 
-    <!--     Bootstrap JS       -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <!---------------x------------- Main Site Section ---------------x-------------->
 
-</body>
+        <!----------------------------- Footer ------------------------------------------>
 
+        <footer class="footer">
+            <div class="container">
+                <div class="about-us" data-aos="fade-right" data-aos-delay="200">
+                    <h2>About us</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quia
+                        atque nemo ad modi officiis iure, autem nulla tenetur repellendus.
+                    </p>
+                </div>
+
+                <div class="newsletter" data-aos="fade-right" data-aos-delay="200">
+                    <h2>Newsletter</h2>
+                    <p>Stay update with our latest</p>
+                    <div class="form-element">
+                        <form action="/mailer" method="POST">
+                            <input type="email" name="mail" placeholder="Email" />
+                            <span>
+                                <button type="submit">
+                                    <i
+                                        class="fa fa-envelope-o"
+                                        aria-hidden="true"
+                                        style="color: black"
+                                    ></i>
+                                </button>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+                <div class="contactus" data-aos="fade-left" data-aos-delay="200" id="contactus">
+                    <h2>Contact Us</h2>
+                    <p>+91 7294992887</p>
+                    <a href="mailto:ieeeessit@vit.ac.in"><p>ieeeessit@vit.ac.in</p></a>
+                </div>
+                <div class="follow" data-aos="fade-left" data-aos-delay="200">
+                    <h2>Follow us</h2>
+                    <p>Let us be Social</p>
+                    <div>
+                        <a href="https://www.facebook.com/SSITVIT/"
+                            ><i class="fa fa-facebook-official" aria-hidden="true"></i
+                        ></a>
+                        <a href="https://instagram.com/ieeessit/"
+                            ><i class="fa fa-instagram" aria-hidden="true"></i
+                        ></a>
+                        <a href="https://www.linkedin.com/in/"
+                            ><i class="fa fa-linkedin" aria-hidden="true"></i
+                        ></a>
+                        <a href="https://github.com/ieeessitvit"
+                            ><i class="fa fa-github" aria-hidden="true"></i
+                        ></a>
+                    </div>
+                </div>
+            </div>
+            <div class="rights flex-row">
+                <p class="text-gray">
+                    Copyright ©2021 All rights reserved | made by
+                    <a href="https://www.ssitvit.tech/" target="_black">IEEE SSIT-VIT</a>
+                </p>
+            </div>
+            <div class="move-up">
+                <span><i class="fa fa-arrow-circle-up fa-3x" aria-hidden="true"></i></span>
+            </div>
+        </footer>
+
+        <!-- -------------x------------- Footer --------------------x------------------- -->
+
+        <!-- Jquery Library file -->
+        <script src="/javascripts/blog_js/Jquery3.4.1.min.js"></script>
+
+        <!-- --------- Owl-Carousel js ------------------->
+        <script src="/javascripts/blog_js/owl.carousel.min.js"></script>
+
+        <!-- ------------ AOS js Library  ------------------------- -->
+        <script src="/javascripts/blog_js/aos.js"></script>
+
+        <!-- Custom Javascript file -->
+        <script src="/javascripts/blog_js/main.js"></script>
+
+        <!--     Bootstrap JS       -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"
+        ></script>
+    </body>
 </html>
