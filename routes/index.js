@@ -33,21 +33,7 @@ if (typeof localStorage === "undefined" || localStorage === null) {
     localStorage = new LocalStorage("./scratch");
 }
 
-// checking user already defined
-function checkuser(req, res, next) {
-    var username = req.body.Username;
-    var checkexituser = userModule.findOne({ username: username });
 
-    checkexituser.exec((err, data) => {
-        if (err) throw err;
-        if (data) {
-            return res.render("signup", {
-                msg: "User Already Exists",
-            });
-        }
-        next();
-    });
-}
 // checking useremail already defined
 function checkemail(req, res, next) {
     var useremail = req.body.Useremail;
@@ -64,8 +50,8 @@ function checkemail(req, res, next) {
 }
 //checking user exists or not
 function checkuserexist(req, res, next) {
-    var username = req.body.Username;
-    var checkexituser = userModule.findOne({ username: username });
+    var useremail = req.body.email;
+    var checkexituser = userModule.findOne({ email: useremail});
 
     checkexituser.exec((err, data) => {
         if (err) throw err;
@@ -173,7 +159,7 @@ router.get("/change/:id", checkLoginuser, async function (req, res, next) {
 });
 
 // post method for storing data from signup page
-router.post("/signup", checkuser, checkemail, function (req, res, next) {
+router.post("/signup",  checkemail, function (req, res, next) {
     var username = req.body.Username;
     var useremail = req.body.Useremail;
     var password = req.body.Password;
@@ -206,24 +192,23 @@ router.post("/signup", checkuser, checkemail, function (req, res, next) {
 
 // login page post method
 router.post("/login", checkuserexist, function (req, res, next) {
-    var loginuser = req.body.Username;
+    var loginemail = req.body.email;
     var loginpass = req.body.Password;
 
-    // console.log(loginpass+loginuser);
+    
 
-    var checkuser = userModule.findOne({ username: loginuser });
+    var checkuser = userModule.findOne({ email: loginemail });
     console.log(checkuser.getOptions);
     checkuser.exec((err, data) => {
         if (err) {
             console.log("fir error agya");
         }
         console.log(data.username);
-        // if(data.username=null){
-        //   res.redirect("/signup")
-        // }else{
+        
         var getpassword = data.password;
+        var loginuser = data.username;
         var getid = data._id;
-        // console.log(data);
+       
 
         if (loginpass == getpassword) {
             var token = jwt.sign({ userID: getid }, "logintoken");
