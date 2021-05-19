@@ -69,26 +69,26 @@ function checkuserexist(req, res, next) {
 /* GET home page. */
 
 router.get("/", function (req, res, next) {
-    var blogshow = blogModule.find().sort({ createdAt: -1 }).limit(2).skip(0);
-    var skip = 2;
+    var blogshow = blogModule.find().sort({ createdAt: -1 }).limit(4).skip(0);
+    var skip = 4;
     blogshow.exec(function (err, data) {
         if (err) throw err;
-
+        
         res.render("blog", {
             title: "",
             records: data,
             skip: skip,
         });
     });
-    // res.render('blog', { title: 'Express' });
+    
 });
 // getting limited data in page method
 router.get("/main/:Id", function (req, res, next) {
     var y = req.params.Id;
     skip = parseInt(y);
-
-    var blogshow = blogModule.find().sort({ createdAt: -1 }).limit(2).skip(skip);
-    skip = skip + 2;
+    console.log(y);
+    var blogshow = blogModule.find().sort({ createdAt: -1 }).limit(4).skip(skip);
+    skip = skip + 4;
     blogshow.exec(function (err, data) {
         if (err) throw err;
 

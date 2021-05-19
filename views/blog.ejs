@@ -76,7 +76,7 @@
         <!------------------------- Site Content -------------------------->
         
         <section class="container">
-            <h1>What's new?</h1>
+            <h1>Latest Blogs </h1>
             <div class="site-content">
                 
                 <div class="posts">
@@ -90,7 +90,7 @@
                             <div class="post-info flex-row">
                                 <span><i class="fa fa-pencil" style="color: black;" aria-hidden="true"></i></i></i>&nbsp;&nbsp;<%= row.author %></span>
                                 <span><i class="fa fa-calendar" style="color: black;" aria-hidden="true"></i>&nbsp;&nbsp;<%= row.createdAt.toLocaleDateString()%></span>
-                                <!-- <span>2 Commets</span> -->
+                                
                             </div>
                         </div>
                         <div class="post-title">
@@ -108,12 +108,16 @@
                         
                         <div class="noblogs">No More Blogs</div>
                         <% } %>
-                        <%if(records.length>0){ %>
-                        <a class="readmore" href="/main/<%=skip%>">Read next blogs </a>
+                        <%if(records.length!=0){ %>
+                        <a class="readmore"style="margin-bottom :10px;" href="/main/<%=prev%>" href="/main/<%=skip%>">Read next blogs </a>
+                        
                         
                         <%} %>  
+                        <%if(skip!=4){ %>  
+                        <%var prev=skip-8%>
                         
-                        
+                        <a class="readmore"style="margin-bottom :10px;" href="/main/<%=prev%>">Previous blogs </a>
+                        <% } %>
                         
                         
                 </div>
@@ -153,7 +157,7 @@
                                 <div class="post-info flex-row">
                                     <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 14,
                                         2019</span>
-                                    <!-- <span>2 Commets</span> -->
+                                 
                                 </div>
                             </div>
                             <div class="post-title">
@@ -168,7 +172,7 @@
                                 <div class="post-info flex-row">
                                     <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 14,
                                         2019</span>
-                                    <!-- <span>2 Commets</span> -->
+                                 
                                 </div>
                             </div>
                             <div class="post-title">
@@ -183,7 +187,7 @@
                                 <div class="post-info flex-row">
                                     <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 14,
                                         2019</span>
-                                    <!-- <span>2 Commets</span> -->
+                                  
                                 </div>
                             </div>
                             <div class="post-title">
@@ -198,7 +202,7 @@
                                 <div class="post-info flex-row">
                                     <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 14,
                                         2019</span>
-                                    <!-- <span>2 Commets</span> -->
+                                  
                                 </div>
                             </div>
                             <div class="post-title">
@@ -213,7 +217,7 @@
                                 <div class="post-info flex-row">
                                     <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 14,
                                         2019</span>
-                                    <!-- <span>2 Commets</span> -->
+                                  
                                 </div>
                             </div>
                             <div class="post-title">
@@ -221,25 +225,17 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="newsletter" data-aos="fade-up" data-aos-delay="300">
-                        <h2>Newsletter</h2>
-                        <div class="form-element">
-                            <input type="text" class="input-element" placeholder="Email">
-                            <button class="btn form-btn">Subscribe</button>
-                        </div>
-                    </div> -->
+                   
                     <div class="popular-tags">
                         <h2>Website developers</h2>
                         <div class="tags flex-row">
-                            <span class="tag" data-aos="flip-up" data-aos-delay="100">Shreyansh</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="200">Ganesh</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="300">Gunzan</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="400">Illustration</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="500">Machine Learning</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="600">Cloud Computing</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="700">Cyber Security</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="700">Cyber Security</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="700">Cyber Security</span>
+                            <span class="tag" data-aos="flip-up" data-aos-delay="100">Gunjan Raj tiwari</span>
+                            <span class="tag" data-aos="flip-up" data-aos-delay="200">Ganesh Sahu</span>
+                            <span class="tag" data-aos="flip-up" data-aos-delay="300">Shreyansh Singh</span>
+                            <span class="tag" data-aos="flip-up" data-aos-delay="400">Satvik Jain</span>
+                            <span class="tag" data-aos="flip-up" data-aos-delay="500">Azgar</span>
+                            <span class="tag" data-aos="flip-up" data-aos-delay="600">Jayendra Awasthi</span>
+                            
                         </div>
                     </div>
                 </aside>
@@ -293,7 +289,7 @@
         </div>
         <div class="rights flex-row">
             <h4 class="text-gray">
-                Copyright ©2021 All rights reserved | made by
+                Copyright ©2021 All rights reserved | Powered By
                 <a href="https://www.ssitvit.tech/" target="_black">IEEE SSIT-VIT</a>
             </h4>
         </div>
@@ -303,11 +299,7 @@
     </footer>
 
     <!-- -------------x------------- Footer --------------------x------------------- -->
-    <script>
-        function goBack() {
-          window.history.back();
-        }
-        </script>
+   
     <!-- Jquery Library file -->
     <script src="/javascripts/blog_js/Jquery3.4.1.min.js"></script>
 
