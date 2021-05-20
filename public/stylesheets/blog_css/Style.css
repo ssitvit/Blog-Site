@@ -367,10 +367,13 @@ main .site-content .post-content > .post-image .img:hover {
 
 main .site-content .post-content > .post-image .post-info span {
     margin: 0 0.5rem;
+    font-weight: 900;
 }
 
 main .post-content .post-title a {
-    font-family: var(--Anton);
+   
+    font-family: 'Livvic';
+    font-weight: 800;
     font-size: 1.5rem;
 }
 
@@ -412,7 +415,7 @@ main .post-content .post-title a {
 }
 
 .site-content .sidebar .popular-post h2 {
-    padding-top: 8rem;
+    /* padding-top: 8rem; */
 }
 
 .site-content .sidebar .popular-post .post-info {

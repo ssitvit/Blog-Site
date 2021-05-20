@@ -44,7 +44,7 @@
                             <a href="/">Home</a>
                         </li>
                         <li class="nav-link">
-                            <a href="/submission">Login</a>
+                            <a href="/submission">Submit blog</a>
                         </li>
                         <li class="nav-link">
                             <a href="/#contactus">Contact Us</a>
@@ -69,12 +69,12 @@
                 <div class="info">
                     <div class="user">
                         <img src="/images/single_assets/avatar.svg" alt="user" />
-                        <span><%= row.author %></span>
+                        <span class="name-date"><%= row.author %></span>
                     </div>
 
                     <div class="time">
                         <img src="/images/single_assets/calander.svg" alt="time" />
-                        <span><%= row.createdAt.toLocaleDateString() %></span>
+                        <span class="name-date"><%= row.createdAt.toLocaleDateString() %></span>
                     </div>
                 </div>
             </div>

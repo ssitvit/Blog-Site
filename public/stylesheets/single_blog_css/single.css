@@ -33,14 +33,18 @@ h1 {
 }
 
 h2 {
-    font-family: "Lexend", sans-serif;
+    font-family: 'Roboto', sans-serif;
     text-align: center;
-    font-size: 2rem;
+    font-weight: 600;
+    font-size: 2.5rem;
     color: #323b46;
-    letter-spacing: 1.5px;
+    letter-spacing: 0px;
     margin: 1em 0.5em;
 }
-
+.name-date {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
 .content h2 {
     font-family: "Lexend", sans-serif;
     font-size: 2rem;
@@ -92,7 +96,7 @@ p {
     font-family: "Lexend", sans-serif;
     color: #343434;
     line-height: 1.5;
-    /* font-weight: 600; */
+    font-weight: 600;
 }
 
 /* --------------- navbar ----------------- */
@@ -231,8 +235,9 @@ p {
 }
 
 .footer {
-    height: 10em;
+    height: 3em;
     text-align: center;
+    font-weight: 600;
 }
 
 @media only screen and (max-width: 768px) {
