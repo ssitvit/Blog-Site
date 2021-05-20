@@ -587,8 +587,10 @@ footer.footer .move-up span:hover {
         /* padding: 0%; */
         width: 100%;
         text-align: center;
-        flex-direction: column !important;
         flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
     }
 
     .nav .toggle-collapse {

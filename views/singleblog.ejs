@@ -81,7 +81,9 @@
 
             <img class="poster" src="/upload/<%= row.image %>" alt="blog" />
 
-            <div class="content"><%- row.sanitizedHtml %> <%console.log(row.sanitizedHtml)%></div>
+            <div class="content" markdown="1">
+                <%- row.sanitizedHtml %> <%console.log(row.sanitizedHtml)%>
+            </div>
 
             <% })} else{ %>
 
