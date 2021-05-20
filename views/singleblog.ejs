@@ -20,6 +20,8 @@
             href="https://fonts.googleapis.com/css2?family=Anton&family=Lexend:wght@100;300&display=swap"
             rel="stylesheet"
         />
+
+        <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
     </head>
     <body>
         <!-- ----------------------------  Navigation ---------------------------------------------- -->
@@ -79,7 +81,9 @@
 
             <img class="poster" src="/upload/<%= row.image %>" alt="blog" />
 
-            <div class="content"><%- row.sanitizedHtml %> <%console.log(row.sanitizedHtml)%></div>
+            <div class="content" markdown="1">
+                <%- row.sanitizedHtml %> <%console.log(row.sanitizedHtml)%>
+            </div>
 
             <% })} else{ %>
 
