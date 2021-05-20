@@ -20,6 +20,7 @@
 
     <!-- Custom Style   -->
     <link rel="stylesheet" href="/stylesheets/blog_css/Style.css">
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
 
 </head>
 
@@ -107,18 +108,20 @@
                     <% })} else{ %>
                         
                         <div class="noblogs">No More Blogs</div>
-                        <% } %>
+                    <% } %>
+
+                    <div class="pagination">
                         <%if(records.length!=0){ %>
-                        <a class="readmore"style="margin-bottom :10px;" href="/main/<%=skip%>">Read next blogs </a>
-                        
-                        
-                        <%} %>  
-                        <%if(skip!=4){ %>  
-                        <%var prev=skip-8%>
-                        
-                        <a class="readmore"style="margin-bottom :10px;" href="/main/<%=prev%>">Previous blogs </a>
-                        <% } %>
-                        
+                            <a class="readmore"style="margin-bottom :10px;" href="/main/<%=skip%>">Next > </a>
+                            
+                            
+                            <%} %>  
+                            <%if(skip!=4){ %>  
+                            <%var prev=skip-8%>
+                            
+                            <a class="readmore"style="margin-bottom :10px;" href="/main/<%=prev%>"> < Previous </a>
+                            <% } %>
+                    </div>
                         
                 </div>
                 <aside class="sidebar">

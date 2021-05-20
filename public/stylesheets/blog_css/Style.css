@@ -29,28 +29,32 @@ body {
 }
 
 /* ---------------- Global Classes ---------------*/
-.noblogs{
+.noblogs {
     text-align: center;
     font-size: 3rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: var(--Livvic);
 }
-.readmore{
+
+.readmore {
     align-items: center;
     display: flex;
     justify-content: center;
-    height:7vh ;
-    width:auto ;
-    border: 1px solid black;
-    font-family: cursive;
-    font-weight: 900;
-    font-size: 1.5rem;
-    background-color: #f5f5f57d;
-    border-radius: 2rem;
-    margin-top: 2rem;
-  
-
-    
+    height: 50px;
+    padding: 0 1.5em;
+    font-family: var(--Livvic);
+    font-size: 1.1rem;
+    background: var(--sky);
+    margin: 1rem;
+    border-radius: 0;
+    color: black;
 }
+
+.pagination {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
 a {
     text-decoration: none;
     color: var(--text-gray);
@@ -374,19 +378,6 @@ main .post-content .post-title a {
     border-radius: 0;
     padding: 0.7rem 1.5rem;
     background: var(--sky);
-}
-
-.site-content .pagination {
-    justify-content: center;
-    color: var(--text-gray);
-    margin: 4rem 0;
-}
-
-.site-content .pagination a {
-    padding: 0.6rem 0.9rem;
-    border-radius: 2rem;
-    margin: 0 0.3rem;
-    font-family: var(--Lexend);
 }
 
 .site-content .pagination .pages {
